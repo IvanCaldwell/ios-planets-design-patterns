@@ -46,7 +46,8 @@ class PlanetsCollectionViewController: UICollectionViewController, UIPopoverPres
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSettings" {
-            let detailVC = segue.destination
+            let detailVC = segue.destination as! SettingsViewController
+            detailVC.planetController = planetController
             let ppc = detailVC.popoverPresentationController
             if let button = sender as? UIButton {
                 ppc?.sourceView = button
