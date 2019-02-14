@@ -9,7 +9,26 @@
 import UIKit
 
 class PlanetsCollectionViewController: UICollectionViewController, UIPopoverPresentationControllerDelegate {
+    // MARK: - Properties
     
+    let planetController = PlanetController()
+    
+    var planets: [Planet] {
+        //let shouldShowPluto = UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
+        //return shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
+        //return  planetController.shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
+        return planetController.planets
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(planetsDidChange(_:)), name: .planetsDidChange, object: nil)
+    }
+    
+    @objc func planetsDidChange(_ notification: Notification) {
+        collectionView?.reloadData()
+    }
+
     @IBAction func unwindToPlanetsCollectionViewController(_ sender: UIStoryboardSegue) {
     }
     
@@ -62,15 +81,6 @@ class PlanetsCollectionViewController: UICollectionViewController, UIPopoverPres
         }
     }
     
-    // MARK: - Properties
     
-    let planetController = PlanetController()
-    
-    var planets: [Planet] {
-        //let shouldShowPluto = UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
-        //return shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
-        //return  planetController.shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
-        return planetController.planets
-    }
     
 }
