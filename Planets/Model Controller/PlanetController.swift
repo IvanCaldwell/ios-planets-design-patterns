@@ -9,6 +9,13 @@
 import Foundation
 
 class PlanetController {
+    
+    var shouldShowPluto: Bool {
+        return UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
+    }
+    
+    var planets: [Planet]
+    
     var planetsWithoutPluto = [
         Planet(name: "Mercury", imageName: "mercury"),
         Planet(name: "Venus", imageName: "venus"),

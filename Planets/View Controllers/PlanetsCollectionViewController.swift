@@ -68,8 +68,9 @@ class PlanetsCollectionViewController: UICollectionViewController, UIPopoverPres
     let planetController = PlanetController()
     
     var planets: [Planet] {
-        let shouldShowPluto = UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
-        return shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
+        //let shouldShowPluto = UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
+        //return shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
+        return  planetController.shouldShowPluto ? planetController.planetsWithPluto : planetController.planetsWithoutPluto
     }
     
 }
