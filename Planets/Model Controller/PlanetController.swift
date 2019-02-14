@@ -8,6 +8,10 @@
 
 import Foundation
 
+extension Notification.Name{
+    static let planetsDidChange = Notification.Name("planetsDidChange")
+}
+
 class PlanetController {
     
     var shouldShowPluto: Bool {
@@ -17,6 +21,7 @@ class PlanetController {
         } set {
             UserDefaults.standard.set(newValue, forKey: .shouldShowPlutoKey)
             //NSUbiquitousKeyValueStore.default.set(newValue, forKey: .shouldShowPlutoKey)
+            NotificationCenter.default.post(name: .planetsDidChange, object: self)
         }
     }
     
