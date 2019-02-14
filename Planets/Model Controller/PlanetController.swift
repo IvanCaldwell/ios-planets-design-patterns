@@ -13,8 +13,10 @@ class PlanetController {
     var shouldShowPluto: Bool {
         get {
             return UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
+            //return NSUbiquitousKeyValueStore.default.bool(forKey: .shouldShowPlutoKey)
         } set {
             UserDefaults.standard.set(newValue, forKey: .shouldShowPlutoKey)
+            //NSUbiquitousKeyValueStore.default.set(newValue, forKey: .shouldShowPlutoKey)
         }
     }
     
