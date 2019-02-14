@@ -11,7 +11,11 @@ import Foundation
 class PlanetController {
     
     var shouldShowPluto: Bool {
-        return UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
+        get {
+            return UserDefaults.standard.bool(forKey: .shouldShowPlutoKey)
+        } set {
+            UserDefaults.standard.set(newValue, forKey: .shouldShowPlutoKey)
+        }
     }
     
     var planets: [Planet] {

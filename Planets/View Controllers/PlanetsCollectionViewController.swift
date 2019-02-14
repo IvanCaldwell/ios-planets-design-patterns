@@ -37,13 +37,11 @@ class PlanetsCollectionViewController: UICollectionViewController, UIPopoverPres
     // MARK: UICollectionViewDelegate
     
     // MARK: - UIPopoverPresentationControllerDelegate
-    
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
     
     // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSettings" {
             let detailVC = segue.destination as! SettingsViewController
