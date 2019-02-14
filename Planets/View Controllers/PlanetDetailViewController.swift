@@ -9,6 +9,14 @@
 import UIKit
 
 class PlanetDetailViewController: UIViewController {
+    var planet: Planet? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +35,23 @@ class PlanetDetailViewController: UIViewController {
         label.text = planet.name
     }
     
-    var planet: Planet? {
-        didSet {
-            updateViews()
-        }
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        guard let planet = planet else { return }
+        coder.encode(planet.name, forKey: "planetName")
+        coder.encode(planet.imageName, forKey: "planetImageName")
     }
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        let optionalPlanetName = coder.decodeObject(forKey: "planetName") as? String
+        let optionalImageName = coder.decodeObject(forKey: "planetImageName") as? String
+        
+        guard let planetName = optionalPlanetName else { return }
+        guard let imageName = optionalImageName else { return }
+        
+        planet = Planet(name: planetName, imageName: imageName)
+    }
+    
     
 }
